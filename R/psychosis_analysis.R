@@ -1,20 +1,12 @@
 # COMPARING BIG FOOT SIGHTINGS TO PSYCHOSIS BY STATE
-library(rvest)
 library(readr)
 library(dplyr)
 library(ggplot2)
 
-# Web scraping big foot sightings
-bigfoot_page = read_html("https://www.bfro.net/gdb/")
 
-info = bigfoot_page %>% html_elements(".cs") %>%
-  html_text()
+# Load Big Foot sightings by state
+bigfoot_df = read.csv("data/df_bigfoot.csv")
 
-locations = info[seq(1, length(info), by = 4)]
-num_sightings = info[seq(2, length(info), by = 4)]
-
-bigfoot_df = data.frame("Location" = locations,
-                        "Sightings" = num_sightings)
 
 # Load up psychosis data
 # data is from https://mhanational.org/data-in-your-community/mha-state-county-data/
